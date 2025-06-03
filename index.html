@@ -1,0 +1,1436 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Wissal Lamouadene - Software Engineer Portfolio">
+    <meta name="author" content="Wissal Lamouadene">
+    <title>Lamouadene Wissal Portfolio</title>
+    <!-- font icons -->
+    <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
+    <!-- Bootstrap + Meyawo main styles -->
+    <link rel="stylesheet" href="assets/css/meyawo.css">
+    <!-- Add modern fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Space+Mono&display=swap" rel="stylesheet">
+    <!-- Add animation library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!-- Add custom styles -->
+    <style>
+        :root {
+            --primary-color: #8e44ad;
+            --secondary-color: #a29bfe;
+            --accent-color: #fd79a8;
+            --text-color: #2d3436;
+            --light-bg: #f9f9f9;
+            --dark-bg: #2d3436;
+            --border-radius: 15px;
+            --card-shadow: 0 10px 30px rgba(142, 68, 173, 0.1);
+            --hover-shadow: 0 15px 40px rgba(142, 68, 173, 0.2);
+        }
+        
+        body {
+            font-family: 'Quicksand', sans-serif;
+            color: var(--text-color);
+            background-color: #fff;
+            background-image: 
+                radial-gradient(#fd79a8 1px, transparent 1px),
+                radial-gradient(#a29bfe 1px, transparent 1px);
+            background-size: 40px 40px;
+            background-position: 0 0, 20px 20px;
+            background-attachment: fixed;
+            background-blend-mode: overlay;
+            background-opacity: 0.05;
+        }
+        
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, var(--primary-color), var(--accent-color));
+            border-radius: 10px;
+        }
+        
+        /* Navbar styling */
+        .custom-navbar {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.4s ease;
+            border-bottom: 3px solid transparent;
+            border-image: linear-gradient(to right, var(--primary-color), var(--accent-color));
+            border-image-slice: 1;
+        }
+        
+        .custom-navbar .logo {
+            font-family: 'Space Mono', monospace;
+            font-weight: 700;
+            color: var(--primary-color);
+            letter-spacing: 1px;
+            position: relative;
+        }
+        
+        .custom-navbar .logo::after {
+            content: '_';
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        
+        .custom-navbar .nav .link {
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+            margin: 0 15px;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+        
+        .custom-navbar .nav .link::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+            transition: width 0.3s ease;
+        }
+        
+        .custom-navbar .nav .link:hover {
+            color: var(--primary-color);
+        }
+        
+        .custom-navbar .nav .link:hover::before {
+            width: 100%;
+        }
+        
+        /* Header styling */
+        .header {
+            background: linear-gradient(135deg, #a29bfe, #8e44ad);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(253, 121, 168, 0.4) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(142, 68, 173, 0.3) 0%, transparent 50%);
+            animation: gradientShift 8s ease-in-out infinite;
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 0.9; }
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .header-title .up {
+            font-weight: 700;
+            font-family: 'Space Mono', monospace;
+            color: white;
+            text-shadow: 3px 3px 0px rgba(142, 68, 173, 0.5);
+            animation: bounce 2s ease infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-20px); }
+            60% { transform: translateY(-10px); }
+        }
+        
+        .header-title .down {
+            font-weight: 700;
+            background: linear-gradient(to right, #fff, #f8e9f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+        
+        .header-subtitle {
+            font-family: 'Space Mono', monospace;
+            letter-spacing: 3px;
+            color: rgba(255, 255, 255, 0.9);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .header-subtitle::after {
+            content: '|';
+            animation: blink 1s infinite;
+        }
+        
+        /* Floating elements */
+        .floating-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .shape {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 15s linear infinite;
+        }
+        
+        .shape:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 20%;
+            left: 10%;
+            animation-duration: 20s;
+            animation-delay: 0s;
+        }
+        
+        .shape:nth-child(2) {
+            width: 60px;
+            height: 60px;
+            top: 60%;
+            left: 70%;
+            animation-duration: 25s;
+            animation-delay: 2s;
+        }
+        
+        .shape:nth-child(3) {
+            width: 40px;
+            height: 40px;
+            top: 30%;
+            left: 80%;
+            animation-duration: 30s;
+            animation-delay: 4s;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.8;
+            }
+            50% {
+                transform: translateY(-100px) rotate(180deg);
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateY(0) rotate(360deg);
+                opacity: 0.8;
+            }
+        }
+        
+        /* Button styling */
+        .btn-primary {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            border: none;
+            border-radius: 30px;
+            padding: 12px 30px;
+            font-weight: 600;
+            color: white;
+            box-shadow: 0 4px 15px rgba(142, 68, 173, 0.4);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(to right, var(--accent-color), var(--primary-color));
+            transition: all 0.4s ease-in-out;
+            z-index: -1;
+        }
+        
+        .btn-primary:hover::before {
+            width: 100%;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(142, 68, 173, 0.6);
+        }
+        
+        /* Section styling */
+        .section {
+            padding: 100px 0;
+            position: relative;
+        }
+        
+        .section-subtitle {
+            font-family: 'Space Mono', monospace;
+            color: var(--accent-color);
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+        
+        .section-title {
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+            color: var(--primary-color);
+            margin-bottom: 50px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 60%;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+            bottom: -15px;
+            left: 20%;
+            border-radius: 2px;
+        }
+        
+        /* Card styling */
+        .service-card, .testimonial-card, .blog-card, .pricing-card {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: all 0.4s ease;
+            background: white;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            height: 100%;
+        }
+        
+        .service-card:hover, .testimonial-card:hover, .blog-card:hover, .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--hover-shadow);
+        }
+        
+        .service-card .body {
+            padding: 30px 20px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .service-card .body img.icon {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .service-card .body .title {
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        
+        .service-card .body .subtitle {
+            color: var(--text-color);
+            font-size: 0.9rem;
+        }
+        
+        /* Portfolio card styling */
+        .portfolio-card {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(142, 68, 173, 0.1), 0 5px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            margin-bottom: 35px;
+            height: 380px; /* Increased height for better text display */
+            background: #fff;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .portfolio-card-img-container {
+            height: 220px; /* Increased height for image */
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: white;
+        }
+        
+        .portfolio-card-img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: scale-down;
+            padding: 15px;
+        }
+        
+        .portfolio-card-text {
+            padding: 20px 15px; /* Adjusted padding */
+            background: linear-gradient(135deg, 
+                        rgba(142, 68, 173, 1), 
+                        rgba(253, 121, 168, 1));
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .portfolio-card-text h4 {
+            color: white;
+            font-weight: 700;
+            margin-bottom: 10px; /* Reduced margin */
+            font-size: 1.2rem; /* Smaller font size */
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            line-height: 1.3; /* Tighter line height */
+        }
+        
+        .portfolio-card-text p {
+            color: white;
+            font-size: 0.95rem; /* Smaller font size */
+            line-height: 1.5;
+            text-align: center;
+            margin: 0 auto;
+            font-weight: 500;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+        }
+        
+        .portfolio-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 40px rgba(142, 68, 173, 0.2), 0 15px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Media queries for responsive design */
+        @media (max-width: 992px) {
+            .portfolio-card {
+                height: 360px;
+            }
+            
+            .portfolio-card-img-container {
+                height: 200px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .portfolio-card {
+                height: auto; /* Auto height on mobile */
+                max-width: 320px;
+                margin: 0 auto 30px;
+            }
+            
+            .portfolio-card-img-container {
+                height: 180px;
+            }
+            
+            .portfolio-card-text {
+                padding: 20px 15px;
+            }
+            
+            .portfolio-card-text h4 {
+                font-size: 1.1rem;
+            }
+            
+            .portfolio-card-text p {
+                font-size: 0.9rem;
+            }
+        }
+        
+        /* Pricing card styling */
+        .pricing-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+        
+        .pricing-card {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            background: white;
+            margin-bottom: 30px;
+            display: flex;
+            flex-direction: column;
+            min-width: 280px;
+            max-width: 350px;
+        }
+        
+        .pricing-card-header {
+            position: relative;
+            height: 180px; /* Fixed height for consistent appearance */
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f8f9fa;
+        }
+        
+        .pricing-card-icon {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: scale-down; /* Scale down to fit without cropping */
+            transition: all 0.5s ease;
+            padding: 15px;
+        }
+        
+        .pricing-card-body {
+            padding: 30px 25px;
+            text-align: center;
+            flex-grow: 1;
+            background-color: white;
+        }
+        
+        .pricing-card-title {
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+        
+        .pricing-card-list p {
+            margin-bottom: 10px;
+            font-size: 1.05rem;
+            color: var(--text-color);
+            text-align: center;
+        }
+        
+        .pricing-card-footer {
+            padding: 15px 20px;
+            background: rgba(0, 0, 0, 0.02);
+            text-align: center;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .pricing-card-footer span {
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: var(--accent-color);
+            font-family: 'Space Mono', monospace;
+            letter-spacing: 1px;
+        }
+        
+        .pricing-card-btn {
+            margin-top: 10px;
+            margin-bottom: 20px;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            box-shadow: 0 5px 15px rgba(142, 68, 173, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+        
+        .pricing-card:hover .pricing-card-icon {
+            transform: scale(1.05);
+        }
+        
+        .pricing-card-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(142, 68, 173, 0.3);
+        }
+        
+        /* Testimonial card styling */
+        .testimonial-card {
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .testimonial-card-img-holder {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+        }
+        
+        .testimonial-card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .testimonial-card-subtitle {
+            font-style: italic;
+            color: var(--text-color);
+            margin-bottom: 15px;
+            position: relative;
+            padding: 0 20px;
+        }
+        
+        .testimonial-card-subtitle::before,
+        .testimonial-card-subtitle::after {
+            content: '"';
+            font-size: 2rem;
+            color: var(--accent-color);
+            position: absolute;
+            opacity: 0.3;
+        }
+        
+        .testimonial-card-subtitle::before {
+            top: -20px;
+            left: 0;
+        }
+        
+        .testimonial-card-subtitle::after {
+            bottom: -20px;
+            right: 0;
+        }
+        
+        .testimonial-card-title {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        /* Blog card styling */
+        .blog-card {
+            margin-bottom: 50px;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+        
+        .blog-card-header {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .blog-card-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: all 0.4s ease;
+        }
+        
+        .blog-card:hover .blog-card-img {
+            transform: scale(1.1);
+        }
+        
+        .blog-card-body {
+            padding: 20px;
+            background: white;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-top: none;
+            border-radius: 0 0 var(--border-radius) var(--border-radius);
+            transition: all 0.3s ease;
+        }
+        
+        .blog-card:hover .blog-card-body {
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .blog-card-title {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .blog-card-caption {
+            font-size: 0.9rem;
+            color: var(--text-color);
+            margin-bottom: 15px;
+        }
+        
+        .blog-card-caption a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .blog-card-caption a:hover {
+            color: var(--accent-color);
+        }
+        
+        .blog-card-link {
+            display: inline-block;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .blog-card-link:hover {
+            color: var(--accent-color);
+        }
+        
+        /* Contact section styling */
+        .contact-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        
+        .contact-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(108, 92, 231, 0.2), 
+                        0 0 10px rgba(253, 121, 168, 0.2),
+                        0 0 20px rgba(162, 155, 254, 0.1);
+            overflow: hidden;
+            width: 100%;
+            max-width: 600px;
+            transition: all 0.4s ease;
+            border: 2px solid transparent;
+            background-image: linear-gradient(white, white), 
+                              linear-gradient(135deg, #a29bfe, #fd79a8);
+            background-origin: border-box;
+            background-clip: content-box, border-box;
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(108, 92, 231, 0.3),
+                        0 0 15px rgba(253, 121, 168, 0.3),
+                        0 0 30px rgba(162, 155, 254, 0.2);
+        }
+        
+        .contact-header {
+            background: linear-gradient(135deg, #a29bfe, #fd79a8);
+            padding: 25px 20px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .pixel-art-avatar {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 15px;
+            background-image: url('assets/imgs/pixel-avatar.png');
+            background-size: cover;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .glitch-text {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin: 0;
+            position: relative;
+        }
+        
+        .glitch-text::before,
+        .glitch-text::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .glitch-text::before {
+            left: 2px;
+            text-shadow: -1px 0 #fd79a8;
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim 5s infinite linear alternate-reverse;
+        }
+        
+        .glitch-text::after {
+            left: -2px;
+            text-shadow: -1px 0 #a29bfe;
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim2 5s infinite linear alternate-reverse;
+        }
+        
+        @keyframes glitch-anim {
+            0% { clip: rect(42px, 9999px, 44px, 0); }
+            5% { clip: rect(12px, 9999px, 59px, 0); }
+            10% { clip: rect(48px, 9999px, 29px, 0); }
+            15% { clip: rect(42px, 9999px, 73px, 0); }
+            20% { clip: rect(63px, 9999px, 27px, 0); }
+            25% { clip: rect(34px, 9999px, 55px, 0); }
+            30% { clip: rect(86px, 9999px, 73px, 0); }
+            35% { clip: rect(20px, 9999px, 20px, 0); }
+            40% { clip: rect(26px, 9999px, 60px, 0); }
+            45% { clip: rect(25px, 9999px, 66px, 0); }
+            50% { clip: rect(57px, 9999px, 98px, 0); }
+            55% { clip: rect(5px, 9999px, 46px, 0); }
+            60% { clip: rect(82px, 9999px, 31px, 0); }
+            65% { clip: rect(54px, 9999px, 27px, 0); }
+            70% { clip: rect(28px, 9999px, 99px, 0); }
+            75% { clip: rect(45px, 9999px, 69px, 0); }
+            80% { clip: rect(23px, 9999px, 85px, 0); }
+            85% { clip: rect(54px, 9999px, 84px, 0); }
+            90% { clip: rect(45px, 9999px, 47px, 0); }
+            95% { clip: rect(37px, 9999px, 20px, 0); }
+            100% { clip: rect(4px, 9999px, 91px, 0); }
+        }
+        
+        @keyframes glitch-anim2 {
+            0% { clip: rect(65px, 9999px, 100px, 0); }
+            5% { clip: rect(52px, 9999px, 74px, 0); }
+            10% { clip: rect(79px, 9999px, 85px, 0); }
+            15% { clip: rect(75px, 9999px, 5px, 0); }
+            20% { clip: rect(67px, 9999px, 61px, 0); }
+            25% { clip: rect(14px, 9999px, 79px, 0); }
+            30% { clip: rect(1px, 9999px, 66px, 0); }
+            35% { clip: rect(86px, 9999px, 30px, 0); }
+            40% { clip: rect(23px, 9999px, 98px, 0); }
+            45% { clip: rect(85px, 9999px, 72px, 0); }
+            50% { clip: rect(71px, 9999px, 75px, 0); }
+            55% { clip: rect(2px, 9999px, 48px, 0); }
+            60% { clip: rect(30px, 9999px, 16px, 0); }
+            65% { clip: rect(59px, 9999px, 50px, 0); }
+            70% { clip: rect(41px, 9999px, 62px, 0); }
+            75% { clip: rect(2px, 9999px, 82px, 0); }
+            80% { clip: rect(47px, 9999px, 73px, 0); }
+            85% { clip: rect(3px, 9999px, 27px, 0); }
+            90% { clip: rect(26px, 9999px, 55px, 0); }
+            95% { clip: rect(42px, 9999px, 97px, 0); }
+            100% { clip: rect(38px, 9999px, 49px, 0); }
+        }
+        
+        .contact-info {
+            padding: 30px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 10px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-item:hover {
+            background: rgba(162, 155, 254, 0.1);
+            transform: translateX(5px);
+        }
+        
+        .icon-wrapper {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 20px;
+            color: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .email-icon {
+            background: linear-gradient(135deg, #a29bfe, #6c5ce7);
+        }
+        
+        .phone-icon {
+            background: linear-gradient(135deg, #fd79a8, #e84393);
+        }
+        
+        .location-icon {
+            background: linear-gradient(135deg, #6c5ce7, #4834d4);
+        }
+        
+        .linkedin-icon {
+            background: linear-gradient(135deg, #0077B5, #00669c);
+        }
+        
+        .github-icon {
+            background: linear-gradient(135deg, #333, #24292e);
+        }
+        
+        .info-text {
+            flex: 1;
+            text-align: left;
+        }
+        
+        .label {
+            display: block;
+            font-size: 0.8rem;
+            color: #7f8c8d;
+            margin-bottom: 3px;
+        }
+        
+        .value {
+            font-weight: 500;
+            color: #2d3436;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        a.value:hover {
+            color: #6c5ce7;
+        }
+        
+        .contact-footer {
+            padding: 20px;
+            background: rgba(249, 249, 249, 0.8);
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .social-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .social-btn:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+        
+        .email-btn {
+            background: linear-gradient(135deg, #a29bfe, #6c5ce7);
+        }
+        
+        .linkedin-btn {
+            background: linear-gradient(135deg, #0077B5, #00669c);
+        }
+        
+        .github-btn {
+            background: linear-gradient(135deg, #333, #24292e);
+        }
+        
+        /* Add responsive styles */
+        @media (max-width: 768px) {
+            .contact-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .icon-wrapper {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+            
+            .info-text {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+
+    <!-- Page Navbar -->
+    <nav class="custom-navbar" data-spy="affix" data-offset-top="20">
+        <div class="container">
+            <a class="logo" href="#">LAMOUADENE</a>
+            <ul class="nav">
+                <li class="item">
+                    <a class="link" href="#home">Home</a>
+                </li>
+                <li class="item">
+                    <a class="link" href="#portfolio">Skills</a>
+                </li>
+                <li class="item">
+                    <a class="link" href="#testmonial">Professional Experiences</a>
+                </li>
+                <li class="item">
+                    <a class="link" href="#blog">Projects</a>
+                </li>
+                <li class="item">
+                    <a class="link" href="#contact">Contact</a>
+                </li>
+                <li class="item ml-md-3">
+                    <a href="components.html" class="btn btn-primary">Say Hi</a>
+                </li>
+            </ul>
+            <a href="javascript:void(0)" id="nav-toggle" class="hamburger hamburger--elastic">
+                <div class="hamburger-box">
+                    <div class="hamburger-inner"></div>
+                </div>
+            </a>
+        </div>
+    </nav><!-- End of Page Navbar -->
+
+    <!-- page header -->
+    <header id="home" class="header">
+        <div class="overlay"></div>
+        <div class="header-content container">
+            <h1 class="header-title">
+                <span class="up">HI!</span>
+                <span class="down">I am Lamouadene Wissal</span>
+            </h1>
+            <p class="header-subtitle">Software Engineer Student</p>
+
+            <a href="https://github.com/LamouadeneWissal" class="btn btn-primary" target="_blank">
+            Check my work
+            </a>
+
+        </div>
+    </header><!-- end of page header -->
+
+    <!-- about section -->
+    <section class="section pt-0" id="about">
+        <!-- container -->
+        <div class="container text-center">
+            <!-- about wrapper -->
+            <div class="about">
+                <div class="about-img-holder">
+                    <img src="assets/imgs/man.png" class="about-img"
+                        alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page">
+                </div>
+                <div class="about-caption">
+                    <p class="section-subtitle">Who Am I ?</p>
+                    <h2 class="section-title mb-3">About Me</h2>
+                    <p>
+                       I am a dedicated and curious software engineering student at ENSET Mohammedia,
+                        passionate about designing and developing innovative digital solutions. 
+                        With a strong foundation in programming, web and mobile development,
+                        as well as database management, I continuously seek opportunities to
+                        enhance my technical and problem-solving skills. I thrive in collaborative environments,
+                        embrace challenges, and am eager to contribute to impactful projects in the tech industry.
+                    </p>
+                    <a href="assets/imgs/wissal.pdf" download class="btn-rounded btn btn-outline-primary mt-4">
+                     Download CV
+                    </a>
+                    </div>
+            </div><!-- end of about wrapper -->
+        </div><!-- end of container -->
+    </section> <!-- end of about section -->
+
+    <!-- service section -->
+    <section class="section" id="service">
+        <div class="container text-center">
+            <p class="section-subtitle">What I Do ?</p>
+            <h6 class="section-title mb-6">Skills</h6>
+            <!-- row -->
+            <div class="row">
+                <div class="col-md-6 col-lg-3">
+                    <div class="service-card">
+                        <div class="body">
+                            <img src="assets/imgs/dev.png"
+                                alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page"
+                                class="icon">
+                            <h6 class="title">Web Application Development</h6>
+                           
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="service-card">
+                        <div class="body">
+                            <img src="assets/imgs/mobile.png"
+                                alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page"
+                                class="icon">
+                            <h6 class="title">Mobile Application Development</h6>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="service-card">
+                        <div class="body">
+                            <img src="assets/imgs/ai.png"
+                                alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page"
+                                class="icon">
+                            <h6 class="title">Artificial Intelligence & Machine Learning</h6>
+                         
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="service-card">
+                        <div class="body">
+                            <img src="assets/imgs/database.png"
+                                alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page"
+                                class="icon">
+                            <h6 class="title"> Database Design & Management</h6>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div><!-- end of row -->
+        </div>
+    </section><!-- end of service section -->
+
+    <!-- portfolio section -->
+    <section class="section" id="portfolio">
+        <div class="container text-center">
+            <p class="section-subtitle">What I Did ?</p>
+            <h6 class="section-title mb-6">Professional Experiences</h6>
+            <!-- row -->
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="portfolio-card">
+                        <div class="portfolio-card-img-container">
+                            <img src="assets/imgs/pref.jpg" class="portfolio-card-img"
+                                alt="Préfecture de Tiznit">
+                        </div>
+                        <div class="portfolio-card-text">
+                            <h4>Software Engineering Intern – Préfecture de Tiznit</h4>
+                            <p class="font-weight-normal">Developed a task management desktop app,
+                                                          improving internal workflow efficiency.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="portfolio-card">
+                        <div class="portfolio-card-img-container">
+                            <img class="portfolio-card-img" src="assets/imgs/outlier.jpg" 
+                                alt="Outlier">
+                        </div>
+                        <div class="portfolio-card-text">
+                            <h4>Freelance Software Developer – Outlier</h4>
+                            <p class="font-weight-normal">Built and maintained web solutions 
+                                                          tailored to client needs.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="portfolio-card">
+                        <div class="portfolio-card-img-container">
+                            <img class="portfolio-card-img" src="assets/imgs/deepleaf.png" 
+                                alt="DeepLeaf">
+                        </div>
+                        <div class="portfolio-card-text">
+                            <h4>Developer – DeepLeaf (Start-up)</h4>
+                            <p class="font-weight-normal">Contributed to innovative tech 
+                                solutions in a fast-paced environment.</p>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- end of row -->
+        </div><!-- end of container -->
+    </section> <!-- end of portfolio section -->
+
+    <!-- pricing section -->
+    <section class="section" id="pricing">
+        <div class="container text-center">
+            <p class="section-subtitle">What did I study ?</p>
+            <h6 class="section-title mb-6">My career</h6>
+            <!-- row -->
+            <div class="pricing-wrapper">
+                <div class="pricing-card">
+                    <div class="pricing-card-header">
+                        <img class="pricing-card-icon" src="assets/imgs/enset.png"
+                            alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page">
+                    </div>
+                    <div class="pricing-card-body">
+                        <h6 class="pricing-card-title">ENSET</h6>
+                        <div class="pricing-card-list">
+                            <p>MOHAMMEDIA</p>
+                             <p>Software Engineering</p>
+                            
+                        </div>
+                    </div>
+                    <div class="pricing-card-footer">
+                        <span>2023-2026</span>
+                    </div>
+                    <a href="#" class="btn btn-primary mt-3 pricing-card-btn">check diploma</a>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-card-header">
+                        <img class="pricing-card-icon" src="assets/imgs/cpge.jpg"
+                            alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page">
+                    </div>
+                    <div class="pricing-card-body">
+                        <h6 class="pricing-card-title">Preparatory Classes</h6>
+                        <div class="pricing-card-list">
+                            <p>Reda Slaoui</p>
+                            <p>Agadir</p>
+                            <p>Technology and scientific sciences</p>
+                        </div>
+                    </div>
+                    <div class="pricing-card-footer">
+                       
+                        <span>2020-2023</span>
+                    </div>
+                    <a href="#" class="btn btn-primary mt-3 pricing-card-btn">check diploma</a>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-card-header">
+                        <img class="pricing-card-icon" src="assets/imgs/rasmuki.jpg"
+                            alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page">
+                    </div>
+                    <div class="pricing-card-body">
+                        <h6 class="pricing-card-title">Baccalauréat</h6>
+                        <div class="pricing-card-list">
+                            <p>Errasmouki</p>
+                            <p>Tiznit </p>
+                            <p>Science and electrical Technologies</p>
+                        
+                        </div>
+                    </div>
+                    <div class="pricing-card-footer">
+                        <span>2020</span>
+                    </div>
+                    <a href="#" class="btn btn-primary mt-3 pricing-card-btn">check diploma</a>
+                </div>
+
+            </div><!-- end of pricing wrapper -->
+        </div> <!-- end of container -->
+    </section><!-- end of pricing section -->
+
+    <!-- section -->
+    <section class="section-sm bg-primary">
+        <!-- container -->
+        <div class="container text-center text-sm-left">
+            <!-- row -->
+            <div class="row align-items-center">
+                <div class="col-sm offset-md-1 mb-4 mb-md-0">
+                    <h6 class="title text-light">Want to work with me?</h6>
+                    <p class="m-0 text-light">Always feel Free to Contact & Hire me</p>
+                </div>
+                <div class="col-sm offset-sm-2 offset-md-3">
+                <a
+                 href="https://www.linkedin.com/in/wissal-lamouadene-4b136923a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                 target="_blank"
+                 >
+               <button class="btn btn-lg my-font btn-light rounded">Hire Me</button>
+              </a>
+            </div>
+
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </section> <!-- end of section -->
+
+    <!-- testimonial section -->
+    <section class="section" id="testmonial">
+        <div class="container text-center">
+            <p class="section-subtitle">What am i interested in?</p>
+            <h6 class="section-title mb-6"> My Areas of Interest</h6>
+
+            <!-- row -->
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="testimonial-card">
+                        <div class="testimonial-card-img-holder">
+                            <img src="assets/imgs/in.png" class="testimonial-card-img"
+                                alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page">
+                        </div>
+                        <div class="testimonial-card-body">
+                            <p class="testimonial-card-subtitle">I enjoy working with network infrastructure, 
+                                configuring systems, and ensuring secure, efficient operations. I'm interested 
+                                in roles that involve maintaining and optimizing IT environments..</p>
+                            <h6 class="testimonial-card-title">Networking & System Administration</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="testimonial-card">
+                        <div class="testimonial-card-img-holder">
+                            <img src="assets/imgs/chip.png" class="testimonial-card-img"
+                                alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page">
+                        </div>
+                        <div class="testimonial-card-body">
+                            <p class="testimonial-card-subtitle">I'm fascinated by AI's ability to solve complex problems.
+                                 I’m particularly interested in machine learning and intelligent systems that adapt,
+                                  learn, and improve over time.</p>
+                            <h6 class="testimonial-card-title">Artificial Intelligence</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- end of container -->
+    </section> <!-- end of testimonial section -->
+
+    <!-- blog section -->
+    <section class="section" id="blog">
+        <!-- container -->
+        <div class="container text-center">
+            <p class="section-subtitle">Recent work?</p>
+            <h6 class="section-title mb-6">Projects</h6>
+            <!-- blog-wrapper -->
+            <div class="blog-card">
+                <div class="blog-card-header">
+                    <img src="assets/imgs/hos.png" class="blog-card-img"
+                        alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page">
+                </div>
+                <div class="blog-card-body">
+                    <h5 class="blog-card-title">Hospitals Management System</h6>
+
+                        <p class="blog-card-caption">
+                            <a href="#">By: me</a>
+                            <a href="#"><i class="ti-heart text-danger"></i> 234</a>
+                            <a href="#"><i class="ti-comment"></i> 123</a>
+                        </p>
+                       <p>It's a web application to manage hospitals, from appointment booking to patient administration.</p>
+
+                            <p><b>Built with Spring Boot and Angular, it streamlines healthcare operations.</b></p>
+
+                             <p>Users can schedule appointments, manage patient records, and handle
+
+                               hospital tasks efficiently through a modern, user-friendly interface.</p>
+
+
+                        <a href="#" class="blog-card-link">github <i class="ti-angle-double-right"></i></a>
+                </div>
+            </div><!-- end of blog wrapper -->
+
+            <!-- blog-wrapper -->
+            <div class="blog-card">
+                <div class="blog-card-header">
+                    <img src="assets/imgs/facial.webp" class="blog-card-img"
+                        alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page">
+                </div>
+                <div class="blog-card-body">
+                    <h5 class="blog-card-title">Facial Recognition Access System</h6>
+
+                        <p class="blog-card-caption">
+                            <a href="#">By: me</a>
+                            <a href="#"><i class="ti-heart text-danger"></i> 456</a>
+                            <a href="#"><i class="ti-comment"></i> 264</a>
+                        </p>
+
+                       <p>It's a desktop application for building access control using facial recognition.</p>
+                        <p><b>Developed with JavaFX and powered by the DeepFace library for accurate identity verification.</b></p> <p>The system detects and recognizes faces in real time to grant or deny entry to a building, ensuring a secure and contactless access process.</p>
+
+                        <a href="#" class="blog-card-link">github <i class="ti-angle-double-right"></i></a>
+                </div>
+            </div><!-- end of blog wrapper -->
+
+        </div><!-- end of container -->
+    </section><!-- end of blog section -->
+
+  <!-- contact section -->
+<section class="section" id="contact">
+    <div class="container text-center">
+        <p class="section-subtitle">How can you communicate?</p>
+        <h6 class="section-title mb-5">Contact Me</h6>
+
+        <div class="contact-container">
+            <div class="contact-card">
+                <div class="contact-header">
+                    <div class="pixel-art-avatar"></div>
+                    <h4 class="glitch-text" data-text="Let's Connect!">Let's Connect!</h4>
+                </div>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="icon-wrapper email-icon">
+                            <i class="ti-email"></i>
+                        </div>
+                        <div class="info-text">
+                            <span class="label">Email</span>
+                            <a href="mailto:wisslamouadene@example.com" class="value">wisslamouadene@example.com</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="icon-wrapper phone-icon">
+                            <i class="ti-mobile"></i>
+                        </div>
+                        <div class="info-text">
+                            <span class="label">Phone</span>
+                            <a href="tel:+212767311433" class="value">+212 767 311 433</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="icon-wrapper location-icon">
+                            <i class="ti-location-pin"></i>
+                        </div>
+                        <div class="info-text">
+                            <span class="label">Location</span>
+                            <span class="value">Mohammedia, Morocco</span>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="icon-wrapper linkedin-icon">
+                            <i class="ti-linkedin"></i>
+                        </div>
+                        <div class="info-text">
+                            <span class="label">LinkedIn</span>
+                            <a href="https://www.linkedin.com/in/wissal-lamouadene-4b136923a" target="_blank" class="value">wissal-lamouadene</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="icon-wrapper github-icon">
+                            <i class="ti-github"></i>
+                        </div>
+                        <div class="info-text">
+                            <span class="label">GitHub</span>
+                            <a href="https://github.com/LamouadeneWissal" target="_blank" class="value">LamouadeneWissal</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-footer">
+                    <div class="social-buttons">
+                        <a href="mailto:wisslamouadene@example.com" class="social-btn email-btn">
+                            <i class="ti-email"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/wissal-lamouadene-4b136923a" target="_blank" class="social-btn linkedin-btn">
+                            <i class="ti-linkedin"></i>
+                        </a>
+                        <a href="https://github.com/LamouadeneWissal" target="_blank" class="social-btn github-btn">
+                            <i class="ti-github"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!-- end of contact section -->
+
+
+    <!-- footer -->
+    <div class="container">
+        <footer class="footer">
+            
+            <div class="social-links text-right m-auto ml-sm-auto">
+                <a href="javascript:void(0)" class="link"><i class="ti-facebook"></i></a>
+                <a href="javascript:void(0)" class="link"><i class="ti-twitter-alt"></i></a>
+                <a href="javascript:void(0)" class="link"><i class="ti-google"></i></a>
+                <a href="javascript:void(0)" class="link"><i class="ti-pinterest-alt"></i></a>
+                <a href="javascript:void(0)" class="link"><i class="ti-instagram"></i></a>
+                <a href="javascript:void(0)" class="link"><i class="ti-rss"></i></a>
+            </div>
+        </footer>
+    </div> <!-- end of page footer -->
+
+    <!-- core  -->
+    <script src="assets/vendors/jquery/jquery-3.4.1.js"></script>
+    <script src="assets/vendors/bootstrap/bootstrap.bundle.js"></script>
+
+    <!-- bootstrap 3 affix -->
+    <script src="assets/vendors/bootstrap/bootstrap.affix.js"></script>
+
+    <!-- Meyawo js -->
+    <script src="assets/js/meyawo.js"></script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
