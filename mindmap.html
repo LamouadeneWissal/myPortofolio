@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wissal Lamouadene - Skills & Growth Mind Map</title>
+    <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="assets/css/meyawo.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Space+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        :root {
+            --primary-color: #8e44ad;
+            --secondary-color: #a29bfe;
+            --accent-color: #fd79a8;
+            --text-color: #2d3436;
+            --light-bg: #f9f9f9;
+            --dark-bg: #2d3436;
+            --border-radius: 15px;
+            --card-shadow: 0 10px 30px rgba(142, 68, 173, 0.1);
+            --hover-shadow: 0 15px 40px rgba(142, 68, 173, 0.2);
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-attachment: fixed;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+        
+        /* Navbar styling */
+        .custom-navbar {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.4s ease;
+            border-bottom: 3px solid transparent;
+            border-image: linear-gradient(to right, var(--primary-color), var(--accent-color));
+            border-image-slice: 1;
+        }
+        
+        .custom-navbar .logo {
+            font-family: 'Space Mono', monospace;
+            font-weight: 700;
+            color: var(--primary-color);
+            letter-spacing: 1px;
+            position: relative;
+        }
+        
+        .custom-navbar .logo::after {
+            content: '_';
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        
+        .custom-navbar .nav .link {
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+            margin: 0 15px;
+            color: var(--accent-color); /* Pink color from accent variable */
+            transition: all 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
+            cursor: pointer;
+            display: inline-block;
+        }
+        
+        .custom-navbar .nav .link::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+            transition: width 0.3s ease;
+        }
+        
+        .custom-navbar .nav .link:hover {
+            color: var(--primary-color);
+        }
+        
+        .custom-navbar .nav .link:hover::before {
+            width: 100%;
+        }
+
+        .back-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            z-index: 100;
+            text-decoration: none;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Mind map specific styling */
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 80px 20px 20px;
+        }
+
+        .mind-map-title {
+            color: white;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .mind-map-title h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .mind-map-title p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .mindmap {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            height: 800px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .central-node {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 80px;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            border-radius: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .central-node:hover {
+            transform: translate(-50%, -50%) scale(1.05);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        .branch {
+            position: absolute;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .branch:hover {
+            transform: scale(1.05);
+        }
+
+        .main-branch {
+            width: 160px;
+            height: 60px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .sub-branch {
+            width: 140px;
+            height: 35px;
+            border-radius: 17px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .technical-skills {
+            background: linear-gradient(135deg, #4ecdc4, #44a08d);
+        }
+
+        .soft-skills {
+            background: linear-gradient(135deg, #a8edea, #fed6e3);
+            color: #333 !important;
+        }
+
+        .projects {
+            background: linear-gradient(135deg, #ffecd2, #fcb69f);
+            color: #333 !important;
+        }
+
+        .certifications {
+            background: linear-gradient(135deg, #a18cd1, #fbc2eb);
+            color: #333 !important;
+        }
+
+        .goals {
+            background: linear-gradient(135deg, #fad0c4, #ffd1ff);
+            color: #333 !important;
+        }
+
+        .connection-line {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.3);
+            transform-origin: left center;
+            z-index: 1;
+        }
+
+        /* Branch positioning */
+        .tech-main { top: 100px; left: 150px; }
+        .soft-main { top: 150px; right: 120px; }
+        .projects-main { bottom: 200px; left: 100px; }
+        .cert-main { bottom: 150px; right: 80px; }
+        .goals-main { top: 300px; left: 50px; }
+
+        /* Sub-branches */
+        .tech-sub1 { top: 50px; left: 50px; }
+        .tech-sub2 { top: 80px; left: 250px; }
+        .tech-sub3 { top: 30px; left: 400px; }
+
+        .soft-sub1 { top: 100px; right: 20px; }
+        .soft-sub2 { top: 200px; right: 50px; }
+        .soft-sub3 { top: 130px; right: 250px; }
+
+        .proj-sub1 { bottom: 150px; left: 20px; }
+        .proj-sub2 { bottom: 250px; left: 80px; }
+        .proj-sub3 { bottom: 180px; left: 280px; }
+
+        .cert-sub1 { bottom: 100px; right: 20px; }
+        .cert-sub2 { bottom: 200px; right: 100px; }
+        .cert-sub3 { bottom: 120px; right: 250px; }
+
+        .goals-sub1 { top: 250px; left: 10px; }
+        .goals-sub2 { top: 350px; left: 80px; }
+        .goals-sub3 { top: 380px; left: 200px; }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4); }
+            70% { box-shadow: 0 0 0 20px rgba(255, 255, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+        }
+
+        .tooltip {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            display: none;
+            z-index: 1000;
+            max-width: 200px;
+            text-align: center;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+        }
+
+        /* Media queries for mobile responsiveness */
+        @media (max-width: 768px) {
+            .mindmap {
+                height: 600px;
+            }
+
+            .central-node {
+                width: 160px;
+                height: 60px;
+                font-size: 16px;
+            }
+
+            .main-branch {
+                width: 130px;
+                height: 50px;
+                font-size: 12px;
+            }
+
+            .sub-branch {
+                width: 120px;
+                height: 30px;
+                font-size: 11px;
+            }
+
+            .mind-map-title h1 {
+                font-size: 2rem;
+            }
+
+            .mind-map-title p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Page Navbar -->
+    <nav class="custom-navbar" data-spy="affix" data-offset-top="20">
+        <div class="container">
+            <a class="logo" href="index.html">LAMOUADENE</a>
+            <ul class="nav">
+                <li class="item">
+                    <a class="link" href="index.html">Back to Portfolio</a>
+                </li>
+            </ul>
+        </div>
+    </nav><!-- End of Page Navbar -->
+
+    <div class="container">
+        <div class="mind-map-title">
+            <h1>My Skills & Growth Journey</h1>
+            <p>An interactive visualization of my professional skills, experiences and future goals</p>
+        </div>
+        
+        <div class="mindmap">
+            <!-- Central Node -->
+            <div class="central-node pulse" data-tooltip="Core professional identity and growth journey">
+                My Skills & Growth
+            </div>
+
+            <!-- Technical Skills Branch -->
+            <div class="branch main-branch technical-skills tech-main" data-tooltip="Programming languages, frameworks, and technical expertise">
+                Technical Skills
+            </div>
+            <div class="branch sub-branch tech-sub1" data-tooltip="JavaScript, Python, Java, TypeScript, C++">
+                Programming Languages
+            </div>
+            <div class="branch sub-branch tech-sub2" data-tooltip="React, Angular, Spring Boot, Express">
+                Frameworks & Libraries
+            </div>
+            <div class="branch sub-branch tech-sub3" data-tooltip="Docker, Git, MongoDB, PostgreSQL">
+                Tools & Technologies
+            </div>
+
+            <!-- Soft Skills Branch -->
+            <div class="branch main-branch soft-skills soft-main" data-tooltip="Interpersonal and professional competencies">
+                Soft Skills
+            </div>
+            <div class="branch sub-branch soft-sub1" data-tooltip="Technical writing, presentations, stakeholder communication">
+                Communication
+            </div>
+            <div class="branch sub-branch soft-sub2" data-tooltip="Team leadership, mentoring, project management">
+                Leadership
+            </div>
+            <div class="branch sub-branch soft-sub3" data-tooltip="Agile methodology, problem-solving, collaboration">
+                Teamwork & Agility
+            </div>
+
+            <!-- Projects Branch -->
+            <div class="branch main-branch projects projects-main" data-tooltip="Key projects demonstrating skills and impact">
+                Projects Completed
+            </div>
+            <div class="branch sub-branch proj-sub1" data-tooltip="Hospital Management System with Spring Boot">
+                Hospital Management
+            </div>
+            <div class="branch sub-branch proj-sub2" data-tooltip="Task Management Desktop App">
+                Task Management App
+            </div>
+            <div class="branch sub-branch proj-sub3" data-tooltip="Facial Recognition Access System using JavaFX">
+                Facial Recognition
+            </div>
+
+            <!-- Certifications Branch -->
+            <div class="branch main-branch certifications cert-main" data-tooltip="Professional certifications and continuous learning">
+                Certifications & Courses
+            </div>
+            <div class="branch sub-branch cert-sub1" data-tooltip="Web Development Full Stack">
+                Web Development
+            </div>
+            <div class="branch sub-branch cert-sub2" data-tooltip="Machine Learning specialization">
+                ML Specialization
+            </div>
+            <div class="branch sub-branch cert-sub3" data-tooltip="Agile development methodology">
+                Agile Methods
+            </div>
+
+            <!-- Goals Branch -->
+            <div class="branch main-branch goals goals-main" data-tooltip="Future aspirations and development plans">
+                Future Goals
+            </div>
+            <div class="branch sub-branch goals-sub1" data-tooltip="Become a proficient fullstack developer">
+                Fullstack Developer
+            </div>
+            <div class="branch sub-branch goals-sub2" data-tooltip="Master AI and data science technologies">
+                AI/Data Science
+            </div>
+            <div class="branch sub-branch goals-sub3" data-tooltip="Launch innovative tech solutions">
+                Tech Innovation
+            </div>
+
+            <!-- Tooltip element -->
+            <div class="tooltip" id="tooltip"></div>
+        </div>
+    </div>
+
+    <a href="index.html" class="back-btn">
+        <i class="ti-home"></i>
+    </a>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Interactive tooltip functionality
+            const tooltip = document.getElementById('tooltip');
+            const elements = document.querySelectorAll('[data-tooltip]');
+
+            elements.forEach(element => {
+                element.addEventListener('mouseenter', (e) => {
+                    const tooltipText = e.target.getAttribute('data-tooltip');
+                    tooltip.textContent = tooltipText;
+                    tooltip.style.display = 'block';
+                });
+
+                element.addEventListener('mousemove', (e) => {
+                    tooltip.style.left = e.pageX + 10 + 'px';
+                    tooltip.style.top = e.pageY - 10 + 'px';
+                });
+
+                element.addEventListener('mouseleave', () => {
+                    tooltip.style.display = 'none';
+                });
+            });
+
+            // Add click effects
+            elements.forEach(element => {
+                element.addEventListener('click', (e) => {
+                    e.target.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        e.target.style.transform = '';
+                    }, 150);
+                });
+            });
+
+            // Add floating animation to sub-branches
+            const subBranches = document.querySelectorAll('.sub-branch');
+            subBranches.forEach((branch, index) => {
+                branch.style.animation = `float 3s ease-in-out infinite ${index * 0.2}s`;
+            });
+
+            // Function to draw connection lines
+            function drawLines() {
+                // Clear previous lines
+                document.querySelectorAll('.connection-line').forEach(line => line.remove());
+                
+                const central = document.querySelector('.central-node');
+                const centralRect = central.getBoundingClientRect();
+                const centralX = centralRect.left + centralRect.width / 2;
+                const centralY = centralRect.top + centralRect.height / 2;
+                
+                const mainBranches = document.querySelectorAll('.main-branch');
+                
+                mainBranches.forEach(branch => {
+                    const branchRect = branch.getBoundingClientRect();
+                    const branchX = branchRect.left + branchRect.width / 2;
+                    const branchY = branchRect.top + branchRect.height / 2;
+                    
+                    // Create line from central to each main branch
+                    const line = document.createElement('div');
+                    line.className = 'connection-line';
+                    document.querySelector('.mindmap').appendChild(line);
+                    
+                    // Calculate distance and angle
+                    const dx = branchX - centralX;
+                    const dy = branchY - centralY;
+                    const length = Math.sqrt(dx * dx + dy * dy);
+                    const angle = Math.atan2(dy, dx) * 180 / Math.PI;
+                    
+                    // Position and rotate the line
+                    line.style.width = `${length}px`;
+                    line.style.height = '2px';
+                    line.style.left = `${centralX}px`;
+                    line.style.top = `${centralY}px`;
+                    line.style.transform = `rotate(${angle}deg)`;
+                });
+
+                // Connect sub-branches to main branches
+                const techBranch = document.querySelector('.tech-main');
+                const softBranch = document.querySelector('.soft-main');
+                const projBranch = document.querySelector('.projects-main');
+                const certBranch = document.querySelector('.cert-main');
+                const goalsBranch = document.querySelector('.goals-main');
+
+                // Tech sub-branches
+                connectSubBranches(techBranch, document.querySelectorAll('.tech-sub1, .tech-sub2, .tech-sub3'));
+                
+                // Soft skills sub-branches
+                connectSubBranches(softBranch, document.querySelectorAll('.soft-sub1, .soft-sub2, .soft-sub3'));
+                
+                // Projects sub-branches
+                connectSubBranches(projBranch, document.querySelectorAll('.proj-sub1, .proj-sub2, .proj-sub3'));
+                
+                // Certification sub-branches
+                connectSubBranches(certBranch, document.querySelectorAll('.cert-sub1, .cert-sub2, .cert-sub3'));
+                
+                // Goals sub-branches
+                connectSubBranches(goalsBranch, document.querySelectorAll('.goals-sub1, .goals-sub2, .goals-sub3'));
+            }
+
+            // Helper function to connect sub-branches to a main branch
+            function connectSubBranches(mainBranch, subBranches) {
+                const mainRect = mainBranch.getBoundingClientRect();
+                const mainX = mainRect.left + mainRect.width / 2;
+                const mainY = mainRect.top + mainRect.height / 2;
+                
+                subBranches.forEach(sub => {
+                    const subRect = sub.getBoundingClientRect();
+                    const subX = subRect.left + subRect.width / 2;
+                    const subY = subRect.top + subRect.height / 2;
+                    
+                    // Create line from main branch to sub-branch
+                    const line = document.createElement('div');
+                    line.className = 'connection-line';
+                    document.querySelector('.mindmap').appendChild(line);
+                    
+                    // Calculate distance and angle
+                    const dx = subX - mainX;
+                    const dy = subY - mainY;
+                    const length = Math.sqrt(dx * dx + dy * dy);
+                    const angle = Math.atan2(dy, dx) * 180 / Math.PI;
+                    
+                    // Position and rotate the line
+                    line.style.width = `${length}px`;
+                    line.style.height = '1px';
+                    line.style.left = `${mainX}px`;
+                    line.style.top = `${mainY}px`;
+                    line.style.transform = `rotate(${angle}deg)`;
+                    line.style.opacity = '0.5';
+                });
+            }
+            
+            // Draw lines initially
+            setTimeout(drawLines, 500);
+              // Redraw on resize
+            window.addEventListener('resize', () => {
+                setTimeout(drawLines, 100);
+            });
+            
+            // Navbar title click functionality
+            const navbarLinks = document.querySelectorAll('.custom-navbar .nav .link');
+            const alternativeTitles = [
+                "Projects", "Skills", "Experience", "Contact Me", "About"
+            ];
+            
+            navbarLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // Only handle the click if we're not navigating away
+                    if (!this.getAttribute('href') || e.ctrlKey || e.metaKey) {
+                        e.preventDefault();
+                              // Store original title if not already stored
+                    if (!this.getAttribute('data-original-title')) {
+                        this.setAttribute('data-original-title', this.textContent);
+                    }
+                        
+                    // Get current text and change it to a random alternative
+                    const currentText = this.textContent;
+                    const randomTitle = alternativeTitles[Math.floor(Math.random() * alternativeTitles.length)];
+                        
+                        // Apply animation
+                        this.style.transform = 'translateY(-10px)';
+                        this.style.opacity = '0';
+                        
+                        setTimeout(() => {
+                            this.textContent = randomTitle;
+                            this.style.transform = 'translateY(0)';
+                            this.style.opacity = '1';
+                            
+                            // Change color temporarily
+                            const originalColor = getComputedStyle(this).color;
+                            this.style.color = '#ff69b4'; // Bright pink
+                              setTimeout(() => {
+                                this.style.color = originalColor;
+                            }, 1000);
+                            
+                            // Set up double-click to restore original title
+                            this.addEventListener('dblclick', function(evt) {
+                                evt.preventDefault();
+                                const originalTitle = this.getAttribute('data-original-title') || "Back to Portfolio";
+                                this.textContent = originalTitle;
+                                this.style.transform = 'scale(1.1)';
+                                setTimeout(() => {
+                                    this.style.transform = 'scale(1)';
+                                }, 200);
+                            }, { once: true });
+                        }, 300);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

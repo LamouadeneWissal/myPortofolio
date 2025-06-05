@@ -59,8 +59,8 @@
         
         /* Navbar styling */
         .custom-navbar {
-            background-color: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            background-color: rgba(232, 167, 221, 0.95);
+            box-shadow: 0 5px 20px rgba(248, 55, 55, 0.05);
             transition: all 0.4s ease;
             border-bottom: 3px solid transparent;
             border-image: linear-gradient(to right, var(--primary-color), var(--accent-color));
@@ -90,8 +90,10 @@
             position: relative;
             padding: 5px 0;
             margin: 0 15px;
-            color: var(--text-color);
-            transition: all 0.3s ease;
+            color: var(--accent-color); /* Changed to pink color */
+            transition: all 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
+            cursor: pointer;
+            display: inline-block;
         }
         
         .custom-navbar .nav .link::before {
@@ -166,9 +168,10 @@
         .header-subtitle {
             font-family: 'Space Mono', monospace;
             letter-spacing: 3px;
-            color: rgba(255, 255, 255, 0.9);
+            color: rgba(232, 167, 221, 1); /* Changed to match navbar background color */
             position: relative;
             display: inline-block;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Added text shadow for better visibility */
         }
         
         .header-subtitle::after {
@@ -357,6 +360,15 @@
             border: 1px solid rgba(0, 0, 0, 0.05);
             display: flex;
             flex-direction: column;
+        }
+        
+        /* Networking cards - taller to fit more content */
+        #networking .portfolio-card {
+            height: 450px;
+        }
+        
+        #networking .portfolio-card-text {
+            overflow-y: auto;
         }
         
         .portfolio-card-img-container {
@@ -950,16 +962,16 @@
             <a class="logo" href="#">LAMOUADENE</a>
             <ul class="nav">
                 <li class="item">
-                    <a class="link" href="#home">Home</a>
-                </li>
-                <li class="item">
                     <a class="link" href="#portfolio">Skills</a>
                 </li>
                 <li class="item">
-                    <a class="link" href="#testmonial">Professional Experiences</a>
+                    <a class="link" href="#blog">Projects</a>
                 </li>
                 <li class="item">
-                    <a class="link" href="#blog">Projects</a>
+                    <a class="link" href="#networking">Networking</a>
+                </li>
+                <li class="item">
+                    <a class="link" href="mindmap.html">Skills Map</a>
                 </li>
                 <li class="item">
                     <a class="link" href="#contact">Contact</a>
@@ -1126,6 +1138,41 @@
             </div><!-- end of row -->
         </div><!-- end of container -->
     </section> <!-- end of portfolio section -->
+
+    <!-- networking section -->
+    <section class="section" id="networking">
+        <div class="container text-center">
+            <p class="section-subtitle">Where I Connected?</p>
+            <h6 class="section-title mb-6">Networking Events</h6>
+            <!-- row -->
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="portfolio-card">
+                        <div class="portfolio-card-img-container">
+                            <img src="assets/imgs/gie.jpeg" class="portfolio-card-img"
+                                alt="GIE Event">
+                        </div>
+                        <div class="portfolio-card-text">
+                            <h4>GEIW 2024 Program</h4>
+                            <p class="font-weight-normal">I recently had the opportunity to take part in the GEIW 2024 program at my school, and it was an amazing experience. I engaged in different workshops and activities that helped me discover new skills and meet students from various backgrounds. One of my favorite parts was collaborating on fun projects and sharing ideas with others. The atmosphere was very inspiring and made me feel more confident and creative.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="portfolio-card">
+                        <div class="portfolio-card-img-container">
+                            <img class="portfolio-card-img" src="assets/imgs/GITEX.jpg" 
+                                alt="GITEX Africa">
+                        </div>
+                        <div class="portfolio-card-text">
+                            <h4>GITEX Africa 2024</h4>
+                            <p class="font-weight-normal">I had the incredible opportunity to attend GITEX Africa 2024 in Marrakech, and it was truly inspiring. The event brought together over 1,500 exhibitors and startups from more than 130 countries, showcasing the latest in technology and innovation. I was particularly fascinated by the advancements in artificial intelligence and digital health, which highlighted Africa's growing role in the global tech industry. Networking with professionals and attending insightful conferences broadened my perspective on the digital transformation happening across the continent.</p>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- end of row -->
+        </div><!-- end of container -->
+    </section> <!-- end of networking section -->
 
     <!-- pricing section -->
     <section class="section" id="pricing">
@@ -1418,6 +1465,81 @@
 
     <!-- Meyawo js -->
     <script src="assets/js/meyawo.js"></script>
+    
+    <!-- Custom JS for navbar interaction -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Navbar title click functionality
+            const navbarLinks = document.querySelectorAll('.custom-navbar .nav .link');
+            const alternativeTitles = [
+                "Projects", "Skills", "Experience", "Contact Me", "About", "Portfolio", "Resume"
+            ];
+            
+            navbarLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // Store original title as data attribute if not already stored
+                    if (!this.getAttribute('data-original-title')) {
+                        this.setAttribute('data-original-title', this.textContent);
+                    }
+                    
+                    // Only modify titles for internal anchors or when ctrl/meta key is pressed
+                    const href = this.getAttribute('href');
+                    if (href && href.includes('.html') && !e.ctrlKey && !e.metaKey) {
+                        // For external pages, just let the navigation happen normally
+                        return;
+                    }
+                    
+                    // For internal links with hash anchors, let the event continue but also animate
+                    if (href && href.startsWith('#') && !e.ctrlKey && !e.metaKey) {
+                        // Don't prevent the default navigation behavior
+                    } else {
+                        // For non-navigating clicks or ctrl/meta clicks, prevent the default
+                        e.preventDefault();
+                    }
+                    
+                    // Get current text and change it to a random alternative
+                    const currentText = this.textContent;
+                    const randomTitle = alternativeTitles[Math.floor(Math.random() * alternativeTitles.length)];
+                    
+                    // Apply animation
+                    this.style.transform = 'translateY(-10px)';
+                    this.style.opacity = '0';
+                    
+                    setTimeout(() => {
+                        // Store original title as data attribute if not already stored
+                        if (!this.getAttribute('data-original-title')) {
+                            this.setAttribute('data-original-title', currentText);
+                        }
+                        
+                        this.textContent = randomTitle;
+                        this.style.transform = 'translateY(0)';
+                        this.style.opacity = '1';
+                        
+                        // Change color temporarily
+                        const originalColor = getComputedStyle(this).color;
+                        this.style.color = '#ff69b4'; // Bright pink
+                        
+                        setTimeout(() => {
+                            this.style.color = originalColor;
+                        }, 1000);
+                        
+                        // Set up double-click to restore original title
+                        this.addEventListener('dblclick', function(evt) {
+                            evt.preventDefault();
+                            const originalTitle = this.getAttribute('data-original-title');
+                            if (originalTitle) {
+                                this.textContent = originalTitle;
+                                this.style.transform = 'scale(1.1)';
+                                setTimeout(() => {
+                                    this.style.transform = 'scale(1)';
+                                }, 200);
+                            }
+                        }, { once: true });
+                    }, 300);
+                });
+            });
+        });
+    </script>
 
 </body>
 
